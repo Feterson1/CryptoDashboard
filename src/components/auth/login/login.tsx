@@ -9,6 +9,7 @@ const LoginPage = (props: any) => {
     
     return(
         <>
+        
             <Typography variant="h2" fontFamily='Poppins' textAlign='center'>Авторизация</Typography>
             <Typography variant="body1" marginBottom={3} fontFamily='Poppins' textAlign='center'>Введите ваш логин и пароль.</Typography>
             <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Email" variant="outlined" placeholder='Введите ваш email' onChange={(e: any) => setEmail(e.target.value)} />
