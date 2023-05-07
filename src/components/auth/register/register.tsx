@@ -4,7 +4,7 @@ import { iPropsRegister } from '../../common/types/auth';
 
 const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.Element => {
 
-    const {setEmail,setPassword,setRepeatPassword,setUserName,setFirstName} = props;
+    const {setEmail,setPassword,setRepeatPassword,setUserName,setFirstName, navigate} = props;
 
     
     return(
@@ -28,7 +28,7 @@ const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.El
         onChange={(e)=> setRepeatPassword(e.target.value )} />
 
         <Button type='submit' sx={{fontFamily:'Poppins',marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Регистрация</Button>
-        <Typography variant="body1" sx={{fontFamily:'Poppins',}}>Уже зарегистрированы?<span className='insicitingText'>Авторизация</span></Typography>
+        <Typography variant="body1" sx={{fontFamily:'Poppins',}}>Уже зарегистрированы?<span className='insicitingText' onClick={()=>navigate('/login')}>Авторизация</span></Typography>
     </>
     )
 }

@@ -1,0 +1,42 @@
+import { createSlice } from "@reduxjs/toolkit"
+import { iAuthState } from "../../../components/common/types/auth";
+
+
+const initialState: iAuthState = {
+    user: {
+        id: null,
+        firstName: '',
+        userName: '',
+        email: '',
+        createdAt: '',
+        updatedAt: '',
+        watchlist: [
+            {
+                id: null,
+                name: '',
+                assetId: '',
+                createdAt: '',
+                updatedAt: '',
+                user: null,
+            }
+        ]
+    },
+    isLogged: false,
+
+}
+
+export const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        login(state,action){
+            state.user = action.payload;
+            state.isLogged = true;
+           
+        }
+    }
+});
+
+export const {login} = authSlice.actions;
+
+export default authSlice.reducer;
