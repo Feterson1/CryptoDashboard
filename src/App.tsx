@@ -3,15 +3,23 @@ import Home from './components/home';
 import {Route,Routes} from 'react-router-dom';
 import PrivateRoute from './utils/router/privateRoute';
 import AuthRootComponent from './components/auth/authRootComponent';
+import { ColorModeContext,useMode } from './theme';
+import { CssBaseline,ThemeProvider } from '@mui/material';
 
 
 
 
 function App() {
 
+
+  const [theme,colorMode] = useMode();
+
   return (
 
-    <div className="App">
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme = {theme}>
+        <CssBaseline/>
+      <div className="App">
       
       <Routes>
         <Route element = {<PrivateRoute/>}>
@@ -24,6 +32,10 @@ function App() {
 
 
     </div>
+      </ThemeProvider>
+    
+    </ColorModeContext.Provider>
+    
   );
 
 }
