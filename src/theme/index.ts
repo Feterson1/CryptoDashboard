@@ -1,8 +1,8 @@
-import {createContext,useState, useMemo} from 'react';
+import {createContext, useState, useMemo} from 'react'
 import { createTheme } from '@mui/material';
 
 export const tokens = (mode: string) => ({
-    ...(mode === "dark" ? {
+    ...(mode === 'dark' ? {
         primary: {
             DEFAULT: '#000000',
             100: '#000000',
@@ -66,78 +66,65 @@ export const tokens = (mode: string) => ({
 
 export const themeSettings: any = (mode: string) => {
     const colors = tokens(mode)
-    return { 
-        pallete: {
+    return {
+        palette: {
+            
             mode: mode,
             ...(mode === 'dark' ? {
                 primary: {
-                    main: colors.black.DEFAULT,
+                    main: colors.primary.DEFAULT
                 },
-                secondary: {
-                    main: colors.gray.DEFAULT,
-                },neutral: {
+                neutral: {
                     dark: colors.black[500],
-                    light: colors.white[100],
-
-                }
+                    light: colors.white[100]
+                },
             } : {
                 primary: {
-                    main: colors.white.DEFAULT,
+                    main: colors.white.DEFAULT
                 },
-                secondary: {
-                    main: colors.gray.DEFAULT,
-                },neutral: {
+                neutral: {
                     dark: colors.black[500],
-                    light: colors.white[100],
-
+                    light: colors.white[100]
                 }
             })
         },
-        typography:{
-            fontFamily: ['Poppins','sans-serif'].join(','),
+        typography: {
+            fontFamily: ['Poppins', 'sans-serif'].join(','),
             fontSize: 14,
-            fontWeight: 500,
-            h1:{
-                fontFamily: ['Poppins','sans-serif'].join(','),
+            h1: {
+                fontFamily: ['Poppins', 'sans-serif'].join(','),
                 fontSize: 28,
-                fontWeight: 600,
             },
-            h2:{
-                fontFamily: ['Poppins','sans-serif'].join(','),
+            h2: {
+                fontFamily: ['Poppins', 'sans-serif'].join(','),
                 fontSize: 20,
-                fontWeight: 600,
             },
-            h3:{
-                fontFamily: ['Poppins','sans-serif'].join(','),
+            h3: {
+                fontFamily: ['Poppins', 'sans-serif'].join(','),
                 fontSize: 18,
-                fontWeight: 600,
             },
-            p:{
-                fontFamily: ['Poppins','sans-serif'].join(','),
+            p: {
+                fontFamily: ['Poppins', 'sans-serif'].join(','),
                 fontSize: 14,
-                fontWeight: 500,
-            },
+            }
         }
     }
 }
 
 export const ColorModeContext: any = createContext({
-    toggleColorMode: () =>{
-
-    }
-});
+    toggleColorMode: () => {}
+})
 
 export const useMode = () => {
-    const [mode,setMode] = useState('dark');
+    const [mode, setMode] = useState('dark')
 
-    const colorMode = useMemo(()=>({
-        toggleColorMode: () => setMode((prev)=> (prev === 'light'? 'dark' : 'light'))
-    }),[])
+    const colorMode = useMemo(
+        () => ({
+            toggleColorMode: () => setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+        }), []
+    )
 
-    const theme: any = useMemo(()=> createTheme(themeSettings(mode)),[mode])
+    const theme: any = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
-    return [colorMode,theme];
+    return [ theme, colorMode]
 }
-
-
-

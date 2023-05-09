@@ -10,6 +10,7 @@ import { login } from '../../store/slice/auth/auth';
 import { AppErrors } from '../common/errors';
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
