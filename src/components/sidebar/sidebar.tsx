@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useStyles } from "./styles";
 import {Box,Drawer,Divider,List,IconButton,ListItem,ListItemButton,ListItemIcon,ListItemText,Typography,useTheme} from '@mui/material';
-import {HomeOutlined,ChevronLeftOutlined,ChevronRightOutlined,AutoGraphOutlined, MenuBookOutlined,SettingsOutlined ,LogoutOutlined } from '@mui/icons-material';
+import {ChevronLeftOutlined,ChevronRightOutlined,LogoutOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FlexBetween from "../flexBetween";
+import { navMenu } from "../common/moks/navigate/navigate";
 
 
 
@@ -29,6 +30,21 @@ const SideBarComponent = (props:any) => {
     useEffect(()=>{
         setActive(pathname.substring(1))
     },[pathname])
+
+    const renderNavMenu =  navMenu.map((element): JSX.Element=>{
+        return(
+            <ListItem key={element.id}>
+                <ListItemButton onClick={()=>{ navigate(`${element.path}`)}}>
+                    <ListItemIcon>
+                        {element.icon}
+                    </ListItemIcon>
+                <ListItemText>
+                    <Typography variant="body1">{element.name}</Typography>
+                </ListItemText>
+                </ListItemButton>
+            </ListItem>
+        )
+    })
    
 
     return( 
@@ -55,6 +71,9 @@ const SideBarComponent = (props:any) => {
                                 )}
                             </FlexBetween>
                         </Box>
+                        <List>
+                           {renderNavMenu}
+                        </List>
 
                     </Box>
                 </Drawer>

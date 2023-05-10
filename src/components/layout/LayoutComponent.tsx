@@ -6,12 +6,14 @@ import { Box } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SideBarComponent from "../sidebar/sidebar";
 import { useState } from "react";
+import { useStyles } from "./styles";
 
 const LayoutComponent = ({children}: iLayout) => {
 
     const location = useLocation();
     const isNoneMobile = useMediaQuery('(min-width:600px');
     const [isOpen,setIsOpen] = useState(true);
+    const classes = useStyles();
 
     return(
 
@@ -21,7 +23,7 @@ const LayoutComponent = ({children}: iLayout) => {
             {children}
             </>
             ) : (
-                <Box display={isNoneMobile? 'flex' : 'block'} width='100%' height='100%'>
+                <Box display={isNoneMobile? 'flex' : 'block'} width='100%' height='100%' justifyContent={'space-between'}>
                 <SideBarComponent 
                 isNoneMobile={isNoneMobile}
                 drawerWigth='250'
@@ -29,7 +31,7 @@ const LayoutComponent = ({children}: iLayout) => {
                 setIsOpen={setIsOpen}
 
                 />
-                <Box>
+                <Box className ={classes.mainSection}>
                 <TopBarComponent/>
                 {children}
                 </Box>

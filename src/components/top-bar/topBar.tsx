@@ -13,7 +13,7 @@ const TopBarComponent = () => {
 
 const {user} = useAppSelector(state => state.auth.user);
 const theme = useTheme();
-console.log(theme.palette.mode)
+
 const colors = tokens(theme.palette.mode);
 
 const colorMode: any = useContext(ColorModeContext);
