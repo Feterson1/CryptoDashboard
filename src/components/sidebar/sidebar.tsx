@@ -6,6 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FlexBetween from "../flexBetween";
 import { navMenu } from "../common/moks/navigate/navigate";
+import { tokens } from "../../theme";
+import logo from './../../assets/images/sidebar/logo.svg'
+
 
 
 
@@ -26,6 +29,7 @@ const SideBarComponent = (props:any) => {
     const {pathname} = useLocation();
     const navigate = useNavigate();
     const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
 
     useEffect(()=>{
         setActive(pathname.substring(1))
@@ -33,8 +37,8 @@ const SideBarComponent = (props:any) => {
 
     const renderNavMenu =  navMenu.map((element): JSX.Element=>{
         return(
-            <ListItem key={element.id}>
-                <ListItemButton onClick={()=>{ navigate(`${element.path}`)}}>
+            <ListItem key={element.id} className={classes.navItem}>
+                <ListItemButton onClick={()=>{ navigate(`${element.path}`)}} className={classes.navItem}>
                     <ListItemIcon>
                         {element.icon}
                     </ListItemIcon>
@@ -58,11 +62,12 @@ const SideBarComponent = (props:any) => {
                     boxSizing: 'border-box',
                     width:drawerWigth,
                 }}}>
-                    <Box width={'100%'}>
+                    <Box  className={classes.navBlock}>
                         <Box>
                             <FlexBetween>
-                                <Box display={'flex'} alignItems={'center'} gap={'10px'}>
-                                    <Typography>Demo</Typography>
+                                <Box className={classes.brand}>
+                                    <img src={logo} alt="logoImage"/>
+                                    <Typography variant="h1" color={theme.palette.mode === 'dark'? colors.white.DEFAULT : colors.black.DEFAULT}>Demo</Typography>
                                 </Box>
                                 {!isNoneMobile && (
                                     <IconButton onClick={()=>{setIsOpen(!isOpen)}}>
@@ -71,8 +76,23 @@ const SideBarComponent = (props:any) => {
                                 )}
                             </FlexBetween>
                         </Box>
-                        <List>
+                        <List className={classes.navList} >
                            {renderNavMenu}
+                        </List>
+
+                    </Box>
+                    <Box width='100%'>
+                        <List>
+                            <ListItem>
+                                <ListItemButton className={classes.navItem}>
+                                    <ListItemIcon>
+                                    <LogoutOutlined/>
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <Typography>Logout</Typography>
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
                         </List>
 
                     </Box>
