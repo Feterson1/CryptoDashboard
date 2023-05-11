@@ -6,15 +6,15 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useTheme } from "@mui/styles";
-import { ColorModeContext, tokens } from "../../theme";
+import { ColorModeContext } from "../../theme";
 import { useStyles } from "./styles";
 
 const TopBarComponent = () => {
 
-const {user} = useAppSelector(state => state.auth.user);
+const user = useAppSelector( (state) => state.auth.user);
 const theme = useTheme();
-console.log(theme.palette.mode)
-const colors = tokens(theme.palette.mode);
+
+
 
 const colorMode: any = useContext(ColorModeContext);
 
@@ -22,30 +22,22 @@ const classes = useStyles();
 
 
     return(
-        <Box display= 'flex'  justifyContent='space-between' px='32px' py='24px'>
-            <Grid>Welcome Dima</Grid>
+        <Box className={classes.root}>
+            <Grid>Welcome Dima </Grid>
             <Box display='flex'>
-                <Grid  onClick={colorMode.toggleColorMode} sx={{pr: '37px', borderRight:`1px solid${colors.gray.DEFAULT}`}}>
-                    <IconButton sx={{mr:'45px'}}>
+                <Grid className={classes.iconBlock}>
+                    <IconButton onClick={colorMode.toggleColorMode} className={classes.themeIcon}>
                         {theme.palette.mode === 'dark'? (<DarkModeIcon/>) : (<LightModeIcon/>) }
                     </IconButton>
                     <IconButton>
                         <NotificationsNoneIcon/>
                     </IconButton>
                 </Grid>
-                <Grid sx={{
-                    display: 'flex',
-                    backgroundColor: `${colors.primary[600]}`,
-                    borderRadius: `8px`,
-                    ml: '28px',
-                }}>
-                    <IconButton className={classes.root}>
+                <Grid className={classes.searchBlock} >
+                    <IconButton className={classes.searchIcon}>
                         <SearchIcon/>
                     </IconButton>
-                    <InputBase sx={{
-                        px:'18px',
-                        py:'12px',
-                    }} placeholder="Поиск"/>
+                    <InputBase className={classes.searchInput}  placeholder="Поиск"/>
                 </Grid>
             </Box>
         </Box>
