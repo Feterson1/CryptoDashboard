@@ -67,7 +67,7 @@ const SideBarComponent = (props:any) => {
                             <FlexBetween>
                                 <Box className={classes.brand}>
                                     <img src={logo} alt="logoImage"/>
-                                    <Typography variant="h1" color={theme.palette.mode === 'dark'? colors.white.DEFAULT : colors.black.DEFAULT}>Demo</Typography>
+                                    <Typography variant="h1">Demo</Typography>
                                 </Box>
                                 {!isNoneMobile && (
                                     <IconButton onClick={()=>{setIsOpen(!isOpen)}}>
