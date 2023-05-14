@@ -44,7 +44,8 @@ export const tokens = (mode: string) => ({
         },
         primary: {
             DEFAULT: '#FFFFFF',
-            600: '#F7F7F7'
+            600: '#F7F7F7',
+          
         },
         black: {
             DEFAULT: '#000000',
