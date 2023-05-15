@@ -22,10 +22,7 @@ const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => 
             variant="outlined" 
             placeholder='Введите ваш email' 
             
-            {...register('email',{
-                required: 'Это обязательное поле',
-                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            })}
+            {...register('email',)}
             helperText={errors.email ? `${errors.email.message}` : ''}
             
             />
@@ -40,10 +37,7 @@ const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => 
             variant="outlined" 
             placeholder='Введите ваш пароль' 
             
-             {...register('password',{
-                required: 'Это обязательное поле',
-                minLength: 6,
-            })}
+             {...register('password',)}
             helperText={errors.password ? `${errors.password.message}` : ''}
             
             />

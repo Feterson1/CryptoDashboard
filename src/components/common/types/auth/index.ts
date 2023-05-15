@@ -14,13 +14,15 @@ TContext = any,
 
 
 }
-export interface iPropsRegister{
+export interface iPropsRegister <
+TFieldValues extends FieldValues = FieldValues,
+TContext = any, 
+>{
 
-    setPassword: (value: string) => void
-    setRepeatPassword: (value: string) => void
-    setEmail: (value: string) => void
-    setUserName: (value: string) => void
-    setFirstName: (value: string) => void
+    
+    register: UseFormRegister<TFieldValues>;
+    errors: FieldErrors<TFieldValues>;
+
     navigate: (to: string) => void
 }
 
