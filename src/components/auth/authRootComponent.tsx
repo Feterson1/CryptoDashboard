@@ -11,6 +11,7 @@ import { AppErrors } from '../common/errors';
 import { useForm } from 'react-hook-form';
 import { LoginSchema, RegisterSchema } from '../../utils/yup';
 import {yupResolver} from '@hookform/resolvers/yup';
+import { useStyles } from './styles';
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
     
@@ -24,6 +25,7 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
          
             resolver: yupResolver(location.pathname === '/login'? LoginSchema : RegisterSchema),
         })
+    const classes = useStyles();
 
 
         console.log('Errors',errors)
@@ -65,8 +67,8 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
     }
 
     return(
-        <div className='root'>
-            <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
+        <div className={classes.root}>
+            <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
                 <Box
                     display='flex'
                     justifyContent='center'
@@ -76,7 +78,7 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
                     margin='auto'
                     padding={5}
                     borderRadius={5}
-                    boxShadow={'5px 5px 10px #ccc'}
+                    boxShadow={'-3px -2px 20px 1px #202020'}
                 >
                     {
                         location.pathname === '/login'

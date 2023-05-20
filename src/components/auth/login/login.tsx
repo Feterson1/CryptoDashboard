@@ -1,18 +1,23 @@
-import React,{Fragment}from 'react';
-import {TextField,Button,Typography} from '@mui/material';
+import React from 'react';
+import {TextField,Typography} from '@mui/material';
 import { iPropsLogin } from '../../common/types/auth';
+import AppButton from '../../app-button/appButton';
+import { useStyles } from './styles';
 
 
 const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => {
 
     const {navigate,register,errors} = props;
 
+    const classes = useStyles();
+    
+
     
     return(
         <>
         
-            <Typography variant="h2" fontFamily='Poppins' textAlign='center'>Авторизация</Typography>
-            <Typography variant="body1" marginBottom={3} fontFamily='Poppins' textAlign='center'>Введите ваш логин и пароль.</Typography>
+            <Typography variant="h2"  textAlign='center' fontSize={'32px'}>Авторизация</Typography>
+            <Typography variant="body1" marginBottom={3}  textAlign='center'>Введите ваш логин и пароль.</Typography>
             <TextField 
             error={!!errors.email}
             fullWidth={true} 
@@ -41,8 +46,8 @@ const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => 
             helperText={errors.password ? `${errors.password.message}` : ''}
             
             />
-            <Button type='submit' sx={{fontFamily:'Poppins',marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Войти</Button>
-            <Typography variant="body1" sx={{fontFamily:'Poppins',}}>У вас нет аккаунта?<span className='insicitingText' onClick={()=>navigate('/register')}>Регистрация</span></Typography>
+            <AppButton type='submit' sx={{fontFamily:'Poppins',marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Войти</AppButton>
+            <Typography variant="body1" >У вас нет аккаунта?<span className={classes.incitingText} onClick={()=>navigate('/register')}>Регистрация</span></Typography>
         </>
 
     )

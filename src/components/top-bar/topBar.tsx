@@ -6,8 +6,10 @@ import { useTheme } from "@mui/styles";
 import { ColorModeContext } from "../../theme";
 import { useStyles } from "./styles";
 import FlexBetween from "../flexBetween";
+import { iTopBarProps } from "../common/types/topbar";
+;
 
-const TopBarComponent = (props:any) => {
+const TopBarComponent: React.FC<iTopBarProps> = (props:iTopBarProps): JSX.Element => {
 
     const {isOpen,setIsOpen} = props;
 
