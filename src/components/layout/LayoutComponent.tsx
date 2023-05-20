@@ -3,10 +3,10 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SideBarComponent from "../sidebar/sidebar";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useStyles } from "./styles";
 
-const LayoutComponent = () => {
+const LayoutComponent: React.FC = (): JSX.Element => {
 
     const location = useLocation();
     const isNoneMobile = useMediaQuery('(min-width:600px');
@@ -24,7 +24,7 @@ const LayoutComponent = () => {
                 <Box display={isNoneMobile? 'flex' : 'block'} width='100%' height='100%' justifyContent={'space-between'}>
                 <SideBarComponent 
                 isNoneMobile={isNoneMobile}
-                drawerWigth='250px'
+                drawerWidth='250px'
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
 

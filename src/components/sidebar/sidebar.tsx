@@ -8,6 +8,7 @@ import FlexBetween from "../flexBetween";
 import { navMenu } from "../common/moks/navigate/navigate";
 import { tokens } from "../../theme";
 import logo from './../../assets/images/sidebar/logo.svg'
+import { iSidebarProps } from "../common/types/sidebar";
 
 
 
@@ -15,12 +16,12 @@ import logo from './../../assets/images/sidebar/logo.svg'
 
 
 
-const SideBarComponent = (props:any) => {
+const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Element => {
 
     const  [active,setActive] = useState('');
 
     const {isNoneMobile,
-        drawerWigth,
+        drawerWidth,
         isOpen,
         setIsOpen,} = props;
     
@@ -32,13 +33,13 @@ const SideBarComponent = (props:any) => {
     const colors = tokens(theme.palette.mode);
 
     useEffect(()=>{
-        setActive(pathname.substring(1))
+        setActive(pathname)
     },[pathname])
 
     const renderNavMenu =  navMenu.map((element): JSX.Element=>{
         return(
             <ListItem key={element.id} className={classes.navItem}>
-                <ListItemButton onClick={()=>{ navigate(`${element.path}`)}} className={classes.navItem}>
+                <ListItemButton onClick={()=>{ navigate(`${element.path}`)}} className={active === element.path?  `${classes.navItem} ${classes.active}`  : classes.navItem}>
                     <ListItemIcon>
                         {element.icon}
                     </ListItemIcon>
@@ -55,12 +56,12 @@ const SideBarComponent = (props:any) => {
         <Box component={'nav'}>
             {isOpen && (
                 <Drawer open={isOpen} onClose={()=>{setIsOpen(false)}} variant="persistent" anchor='left' 
-                sx={{width:drawerWigth,
+                sx={{width:drawerWidth,
                 '& .MuiDrawer-paper':{
                     color:theme.palette.secondary.main,
                     backgroundColor: theme.palette.primary.main,
                     boxSizing: 'border-box',
-                    width:drawerWigth,
+                    width:drawerWidth,
                 }}}>
                     <Box  className={classes.navBlock}>
                         <Box>

@@ -1,16 +1,22 @@
 import React from 'react';
-import {TextField,Button,Typography} from '@mui/material';
+import {TextField,Button,Typography, Box} from '@mui/material';
 import { iPropsRegister } from '../../common/types/auth';
+import AppButton from '../../app-button/appButton';
+import { useStyles } from './styles';
+
 
 const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.Element => {
 
     const {register, errors, navigate} = props;
 
+    const classes = useStyles();
+
     
     return(
         <>
-        <Typography variant="h2" fontFamily='Poppins' textAlign='center'>Регистрация</Typography>
-        <Typography variant="body1" marginBottom={3} fontFamily='Poppins' textAlign='center'>Введите данные для регистрации.</Typography>
+        <Typography variant="h2" textAlign='center'>Регистрация</Typography>
+        <Typography variant="body1" marginBottom={3}  textAlign='center'>Введите данные для регистрации.</Typography>
+        <Box marginBottom={2}>
         <TextField
         error={!!errors.firstName}
         fullWidth={true} 
@@ -73,9 +79,16 @@ const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.El
         {...register('confirmPassword',)}
         helperText={errors.confirmPassword ? `${errors.confirmPassword.message}` : ''}
          />
+        </Box>
 
-        <Button type='submit' sx={{fontFamily:'Poppins',marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Регистрация</Button>
-        <Typography variant="body1" sx={{fontFamily:'Poppins',}}>Уже зарегистрированы?<span className='insicitingText' onClick={()=>navigate('/login')}>Авторизация</span></Typography>
+        <AppButton type='submit'   variant="contained" >Регистрация</AppButton>
+
+        <Box margin={'20px 0px'}>
+
+        <Typography variant="body1" sx={{fontFamily:'Poppins',}}>Уже зарегистрированы?<span className={classes.incitingText} onClick={()=>navigate('/login')}>Авторизация</span></Typography>
+        </Box>
+
+       
     </>
     )
 }
