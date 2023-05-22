@@ -1,13 +1,13 @@
 import React from 'react';
 import {TextField,Button,Typography, Box} from '@mui/material';
 import { iPropsRegister } from '../../common/types/auth';
-import AppButton from '../../app-button/appButton';
+import AppLoadingButton from '../../loading-button/loadingButton';
 import { useStyles } from './styles';
 
 
 const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.Element => {
 
-    const {register, errors, navigate} = props;
+    const {register,errors,navigate,loading} = props;
 
     const classes = useStyles();
 
@@ -81,7 +81,7 @@ const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.El
          />
         </Box>
 
-        <AppButton type='submit'   variant="contained" >Регистрация</AppButton>
+        <AppLoadingButton type='submit' loading={loading}  variant="contained" >Регистрация</AppLoadingButton>
 
         <Box margin={'20px 0px'}>
 

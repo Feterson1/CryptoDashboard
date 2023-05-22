@@ -11,6 +11,7 @@ TContext = any,
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>;
     errors: FieldErrors<TFieldValues>;
+    loading: boolean;
 
 
 }
@@ -24,11 +25,13 @@ TContext = any,
     errors: FieldErrors<TFieldValues>;
 
     navigate: (to: string) => void
+    loading: boolean
 }
 
 export interface iAuthState {
     user: iPublicUser,
     isLogged: boolean,
+    isLoading: boolean,
 }
 
 interface iPublicUser{
@@ -61,4 +64,16 @@ interface iWatchList{
     user: number | null,
 
 
+}
+
+export interface iLoginData{
+    email: string
+    password: string
+}
+
+export interface iRegisterData{
+    email: string
+    password:string
+    userName: string
+    firstName: string
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import {TextField,Typography} from '@mui/material';
 import { iPropsLogin } from '../../common/types/auth';
-import AppButton from '../../app-button/appButton';
+import AppLoadingButton from '../../loading-button/loadingButton';
 import { useStyles } from './styles';
+
 
 
 const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => {
 
-    const {navigate,register,errors} = props;
+    const {navigate,register,errors, loading} = props;
 
     const classes = useStyles();
     
@@ -46,7 +47,7 @@ const LoginPage: React.FC <iPropsLogin> = (props: iPropsLogin) : JSX.Element => 
             helperText={errors.password ? `${errors.password.message}` : ''}
             
             />
-            <AppButton type='submit' sx={{fontFamily:'Poppins',marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Войти</AppButton>
+            <AppLoadingButton type='submit' loading={loading} sx={{marginTop:2,width:'60%',marginBottom:2}}  variant="contained" >Войти</AppLoadingButton>
             <Typography variant="body1" >У вас нет аккаунта?<span className={classes.incitingText} onClick={()=>navigate('/register')}>Регистрация</span></Typography>
         </>
 

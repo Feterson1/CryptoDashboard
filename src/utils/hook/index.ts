@@ -9,6 +9,11 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 
 export const useAuth = () => {
-    const {isLogged} = useAppSelector((state: RootState)=>state.auth);
-    return isLogged;
+   
+
+
+    return !!sessionStorage.getItem('token');
 }
+
+
+// const {isLogged} = useAppSelector((state: RootState)=>state.auth);

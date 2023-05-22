@@ -4,14 +4,13 @@ import RegisterPage from './register/register';
 import LoginPage from './login/login';
 import './style.scss';
 import { Box } from '@mui/system';
-import { instance } from '../../utils/axios';
-import { useAppDispatch } from '../../utils/hook';
-import { login } from '../../store/slice/auth/auth';
+import { useAppDispatch, useAppSelector } from '../../utils/hook';
 import { AppErrors } from '../common/errors';
 import { useForm } from 'react-hook-form';
 import { LoginSchema, RegisterSchema } from '../../utils/yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import { useStyles } from './styles';
+import { loginUser, registerUser } from '../../store/thunks/auth/auth';
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
     
@@ -27,18 +26,16 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
         })
     const classes = useStyles();
 
+    const loading = useAppSelector((state) => state.auth.isLoading);
+        
 
-        console.log('Errors',errors)
     const handleSubmitForm = async (data: any) => {
         console.log('data',data)
         if (location.pathname === '/login') {
             try {
-                const userData = {
-                    email: data.email,
-                    password: data.password,
-                }
-                const user = await instance.post('auth/login', userData)
-                await dispatch(login(user.data))
+               
+                
+                await dispatch(loginUser(data))
                 navigate('/')
             }catch (e) {
                 return e
@@ -53,8 +50,8 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
                         password: data.password,
                     }
                    
-                    const newUser = await instance.post('auth/register', userData)
-                    await dispatch(login(newUser.data))
+                    
+                    await dispatch(registerUser(userData))
                     navigate('/')
                 }catch (e) {
                     console.log(e)
@@ -87,12 +84,14 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
                                 navigate={navigate}
                                 register={register}
                                 errors={errors}
+                                loading={loading}
                             /> : location.pathname === '/register'
                                 ? <RegisterPage
                                 
                                     register={register}
                                     errors={errors}
                                     navigate={navigate}
+                                    loading={loading}
                                 />
                                 : null
                     }
