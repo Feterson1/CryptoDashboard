@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { AppBar, Box, Grid, IconButton,InputBase, Menu, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Grid, IconButton,InputBase, Menu, Toolbar, Typography, useTheme } from "@mui/material";
 import { useAppSelector } from "../../utils/hook";
 import {LightMode,DarkMode,Search,NotificationsNone,MenuOutlined} from '@mui/icons-material';
-import { useTheme } from "@mui/styles";
 import { ColorModeContext } from "../../theme";
 import { useStyles } from "./styles";
 import FlexBetween from "../flexBetween";
@@ -30,7 +29,7 @@ const classes = useStyles();
             <FlexBetween>
                 <MenuOutlined className={classes.menuIcon} onClick={() => {setIsOpen(!isOpen)}}/>
                 <Typography variant="h3">
-                    Welcome Dmitriy
+                    Welcome {sessionStorage.getItem('name')}
                 </Typography>
             </FlexBetween>
             <Box display='flex'>
