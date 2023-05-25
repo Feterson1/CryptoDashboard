@@ -7,7 +7,7 @@ import AreaChart from "../../components/charts/area-chart/areaChart";
 
 
 
-const Home = () =>{
+const Home: React.FC = (): JSX.Element =>{
 
     const favoriteAssets: any[] = useAppSelector(state => state.assets.favoriteAssets);
     const classes = useStyles();
@@ -43,11 +43,12 @@ const Home = () =>{
     },[favoriteAssetName,fetchData])
 
     const renderFavoriteBlock = filteredArray.map((element: any)=>{
-        console.log(element)
+        console.log('Element: ',element)
         const currentPrice = element.data.prices[0];
         const currentCap = element.data.market_caps[0];
         return (
-            <Grid item  xs={12} sm={6} lg={6} >
+
+            <Grid item  xs={12} sm={6} lg={6} key={element.name}>
                  <Grid container className={classes.topCardItem}>
 
                  <Grid item xs={12} sm={6} lg={6}>
@@ -62,7 +63,7 @@ const Home = () =>{
                 </Grid>
 
                 <Grid item xs={12} sm={6} lg={6}>
-                  <AreaChart/>
+                  <AreaChart data={element.data.prices}/>
                 </Grid>
             
             </Grid>
