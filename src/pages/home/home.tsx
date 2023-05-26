@@ -6,13 +6,15 @@ import { useStyles } from "./styles";
 import AreaChart from "../../components/charts/area-chart/areaChart";
 import TrendUp from '../../assets/images/chart/trend-up.svg';
 import TrendDown from '../../assets/images/chart/trend-down.svg';
+import { LineChart } from "../../components/charts/line-chart/lineChart";
+import { iChartData } from "../../components/common/types/assets";
 
 
 
 
 const Home: React.FC = (): JSX.Element =>{
 
-    const favoriteAssets: any[] = useAppSelector(state => state.assets.favoriteAssets);
+    const favoriteAssets: iChartData[] = useAppSelector(state => state.assets.favoriteAssets);
     const classes = useStyles();
 
     const dispatch = useAppDispatch();
@@ -93,7 +95,7 @@ const Home: React.FC = (): JSX.Element =>{
                 </Grid>
 
                 <Grid item xs={12} sm={6} lg={6}>
-                  <AreaChart data={element.data}/>
+                  <AreaChart data={element.price_chart_data}/>
                 </Grid>
             
             </Grid>
@@ -105,9 +107,15 @@ const Home: React.FC = (): JSX.Element =>{
     return (
         <Box className={classes.root}> 
 
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.areaChart}>
                 {renderFavoriteBlock}
             </Grid>
+            <Grid container className={classes.lineChartBlock}>
+                <Grid item xs={12} sm={12} lg={12}>
+                   {filteredArray.length && <LineChart data={filteredArray}/>} 
+                </Grid>
+            </Grid>
+           
 
         </Box>
            
