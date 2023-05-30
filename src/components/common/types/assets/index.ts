@@ -1,5 +1,5 @@
 export interface iAreaChartProps {
-    data: [number[]]
+    data: number[][]
 }
 
 export interface iLineChartProps {
@@ -12,7 +12,7 @@ interface Roi {
     percentage: number
 }
 
-interface SingleAsset {
+export interface iSingleAsset {
     id: string
     symbol: string
     name: string
@@ -44,5 +44,5 @@ interface SingleAsset {
 export interface iChartData {
     name: string
     price_chart_data: number[][]
-    singleAsset: SingleAsset[]
+    singleAsset: iSingleAsset[]
 }
