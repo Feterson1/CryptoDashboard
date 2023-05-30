@@ -7,7 +7,7 @@ import AreaChart from "../../components/charts/area-chart/areaChart";
 import TrendUp from '../../assets/images/chart/trend-up.svg';
 import TrendDown from '../../assets/images/chart/trend-down.svg';
 import { LineChart } from "../../components/charts/line-chart/lineChart";
-import { iChartData } from "../../components/common/types/assets";
+import { iChartData, iSingleAsset } from "../../components/common/types/assets";
 
 
 
@@ -47,18 +47,15 @@ const Home: React.FC = (): JSX.Element =>{
 
     },[favoriteAssetName,fetchData])
 
-    const renderFavoriteBlock = filteredArray.map((element: any)=>{
-        console.log('Element: ',element)
-        const currentPrice = element.singleAsset.map(
-            (element:any) => element.current_price
-        );
-        const currentCap = element.singleAsset.map(
-            (element:any) => element.market_cap
-            );
+    const renderFavoriteBlock = filteredArray.map((element: iChartData)=>{
 
-        const changePrice = element.singleAsset.map(
-            (element:any) => element.price_change_percentage_24h
-            );
+        let currentPrice = 0;
+        let changePrice = 0;
+
+        element.singleAsset.forEach((element: iSingleAsset)=>{
+            currentPrice = element.current_price;
+            changePrice = element.price_change_percentage_24h;
+        })
         return (
 
             <Grid item  xs={12} sm={6} lg={6} key={element.name}>
