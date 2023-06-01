@@ -24,7 +24,7 @@ const Home: React.FC = (): JSX.Element =>{
         )
 
 
-        console.log('iSingleAssets',assetsArray);
+   
 
     const classes = useStyles();
 

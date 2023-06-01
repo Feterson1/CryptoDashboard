@@ -1,20 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Stack,Autocomplete,TextField} from "@mui/material";
 import { iSingleAsset } from '../common/types/assets';
 import { useAppSelector } from '../../utils/hook';
+import { useNavigate } from 'react-router-dom';
 
  function SearchBarComponent() {
+  const [selectedItem,setSelectedItem] = useState<string | null>('');
+  
+    const navigate = useNavigate();
    
 
     const assetsArray: iSingleAsset[] = useAppSelector(
             
       (state) => state.assets.assets,
   )
-
+    
   return (
         <Stack spacing={2} sx={{width: '300px'}}>
-          <Autocomplete 
-          freeSolo
+          <Autocomplete
+          onChange={(e:any, value: string | null) => {
+            navigate(`single/${value}`);
+            setSelectedItem(null);
+          }
+           
+          }
+          value={selectedItem}
           renderInput={(element)=>(
             <TextField {...element} label='Поиск' inputProps={{
               ...element.inputProps,
