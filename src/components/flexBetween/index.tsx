@@ -5,7 +5,7 @@ import React from 'react';
 
 const FlexBetween = styled(Box)({
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     
 })

@@ -1,6 +1,19 @@
 import React, { useEffect } from "react";
 import { useStyles } from "./styles";
-import {Box,Drawer,Divider,List,IconButton,ListItem,ListItemButton,ListItemIcon,ListItemText,Typography,useTheme} from '@mui/material';
+import {
+    Box,
+    Drawer,
+   
+    List,
+    IconButton,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+    useTheme,
+    Stack,
+    Autocomplete} from '@mui/material';
 import {ChevronLeftOutlined,ChevronRightOutlined,LogoutOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -9,6 +22,8 @@ import { navMenu } from "../common/moks/navigate/navigate";
 import { tokens } from "../../theme";
 import logo from './../../assets/images/sidebar/logo.svg'
 import { iSidebarProps } from "../common/types/sidebar";
+import ThemeSwitcherComponent from "../theme-switcher/themeSwitcher";
+import SearchBarComponent from "../search-bar/searchBar";
 
 
 
@@ -77,6 +92,12 @@ const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Ele
                                 )}
                             </FlexBetween>
                         </Box>
+                        <List>
+                            {!isNoneMobile && (
+                            <ListItem>
+                                <SearchBarComponent/>
+                            </ListItem> )}
+                        </List>
                         <List className={classes.navList} >
                            {renderNavMenu}
                         </List>
@@ -84,6 +105,13 @@ const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Ele
                     </Box>
                     <Box width='100%'>
                         <List>
+                            {!isNoneMobile && (
+                                <ListItem>
+                                    <Box padding='5px'>
+                                    <ThemeSwitcherComponent/>
+                                    </Box>
+                                </ListItem>
+                            )}
                             <ListItem>
                                 <ListItemButton className={classes.navItem}>
                                     <ListItemIcon>

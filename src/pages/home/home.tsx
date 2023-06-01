@@ -61,9 +61,7 @@ const Home: React.FC = (): JSX.Element =>{
 
         fetchDataRef.current = true;
         fetchData(favoriteAssetName);
-        // setTimeout(()=>{
-        //     dispatch(getTopPriceData())
-        // },3000)
+       
 
         dispatch(getTopPriceData())
         
