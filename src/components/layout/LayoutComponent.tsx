@@ -9,7 +9,7 @@ import { useStyles } from "./styles";
 const LayoutComponent: React.FC = (): JSX.Element => {
 
     const location = useLocation();
-    const isNoneMobile = useMediaQuery('(min-width:600px');
+    const isNoneMobile = useMediaQuery('(min-width:760px');
     const [isOpen,setIsOpen] = useState(false);
     const classes = useStyles();
 
@@ -31,6 +31,7 @@ const LayoutComponent: React.FC = (): JSX.Element => {
                 />
                 <Box className ={classes.mainSection}>
                 <TopBarComponent
+                isNoneMobile={isNoneMobile}
                  isOpen={isOpen}
                  setIsOpen={setIsOpen}
                  />
