@@ -4,7 +4,7 @@ import { ColorModeContext } from "../../theme";
 import {Grid, IconButton, useTheme } from '@mui/material';
 import {LightMode,DarkMode,NotificationsNone} from '@mui/icons-material';
 
-function ThemeSwitcherComponent() {
+const  ThemeSwitcherComponent:React.FC = ():JSX.Element => {
 
     const theme = useTheme();
     const colorMode: any = useContext(ColorModeContext);

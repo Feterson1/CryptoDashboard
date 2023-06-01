@@ -4,7 +4,8 @@ import { iSingleAsset } from '../common/types/assets';
 import { useAppSelector } from '../../utils/hook';
 import { useNavigate } from 'react-router-dom';
 
- function SearchBarComponent() {
+const SearchBarComponent: React.FC = ():JSX.Element => {
+
   const [selectedItem,setSelectedItem] = useState<string | null>('');
   
     const navigate = useNavigate();
