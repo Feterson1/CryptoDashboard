@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { iSingleAsset } from '../../components/common/types/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hook';
-import {Grid,Button,Avatar,Typography} from '@mui/material';
+import {Grid,Button,Avatar,Typography, Snackbar, Alert, AlertColor} from '@mui/material';
 import FlexBetween from '../../components/flexBetween';
 import { useStyles } from './styles';
 import { createWatchListRecord } from '../../store/thunks/assets';
 
 const  SingleAssetPage: React.FC = ():JSX.Element => {
-
+    const [open,setOpen] = useState(false);
+    const [severity,setSeverity] = useState<AlertColor>('success');
     const navigate = useNavigate();
     const {id} = useParams();
     const classes = useStyles();
@@ -22,16 +23,29 @@ const  SingleAssetPage: React.FC = ():JSX.Element => {
 
     const handleCreateRecord = () => {
 
-        const data = {
-            name: '',
-            assetId : '',
-        }
-        if(asset){ 
-            data.name = asset.name;
-            data.assetId = asset.id;
-        }
+        try{
+            const data = {
+                name: '',
+                assetId : '',
+            }
+            if(asset){ 
+                data.name = asset.name;
+                data.assetId = asset.id;
+            }
+    
+            dispatch(createWatchListRecord(data));
+            setSeverity('success');
+            setOpen(true);
+            setTimeout(()=>{
+                setOpen(false)
+                ;},2000);
 
-        dispatch(createWatchListRecord(data));
+        }catch(error){
+
+            setSeverity('error');
+            setOpen(true);
+
+        }
 
     }
 
@@ -141,6 +155,11 @@ const  SingleAssetPage: React.FC = ():JSX.Element => {
                     Добавить в избраное
                 </Button>
             </Grid>
+            <Snackbar open={open} autoHideDuration={6000}>
+                        <Alert severity={severity} sx={{ width: '100%' }}>
+                            Success!
+                        </Alert>
+                    </Snackbar>
         </Grid>
     )}
 </>
