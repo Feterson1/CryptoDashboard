@@ -10,7 +10,7 @@ const LayoutComponent: React.FC = (): JSX.Element => {
 
     const location = useLocation();
     const isNoneMobile = useMediaQuery('(min-width:760px');
-    const [isOpen,setIsOpen] = useState(false);
+    const [isOpen,setIsOpen] = useState(true);
     const classes = useStyles();
 
     return(
