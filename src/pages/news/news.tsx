@@ -34,7 +34,7 @@ const NewsComponent = () =>{
     
     useEffect(()=>{
         dispatch(getNews())
-    },[])
+    },[dispatch])
 
     return(
         <Grid className={classes.root}>

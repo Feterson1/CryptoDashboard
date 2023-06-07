@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { iLoginData, iRegisterData } from "../../../components/common/types/auth";
-import { instance } from "../../../utils/axios";
+import { instance, instanceAuth } from "../../../utils/axios";
 
 export const loginUser =  createAsyncThunk(
     'auth/login',
@@ -37,12 +37,123 @@ export const registerUser =  createAsyncThunk(
 
 
         const user = await instance.post('auth/register', data);
+
         console.log(user)
+        if(
+            user.data.status === 400 || 
+            user.data.status === 401 ||
+            user.data.status === 500 
+            ) return
+
         sessionStorage.setItem('token',user.data.token);
 
         sessionStorage.setItem('name',user.data.firstName);
         
         return user.data;
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const getPublicUserInfo =  createAsyncThunk(
+    'auth/get-public-user-info',
+    async (_,{rejectWithValue}) => {
+        try{
+
+
+        const user = await instanceAuth.get('auth/get-public-user-info');
+        console.log(user.data)
+       
+        
+        return user.data;
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const updatePublicUserInfo =  createAsyncThunk(
+    'users/update',
+    async (data : any,{rejectWithValue}) => {
+        try{
+
+
+        const user = await instanceAuth.patch('users',data);
+        sessionStorage.setItem('name',user.data.firstName);
+       
+        
+        return user.data;
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const updateUserPassword =  createAsyncThunk(
+    'users/change-password',
+    async (data :{oldPassword: string, newPassword: string},{rejectWithValue}) => {
+        try{
+
+
+        return await instanceAuth.patch('users/change-password',data);
+      
+       
+        
+       
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const deleteUser =  createAsyncThunk(
+    'users/delete-user',
+    async (_,{rejectWithValue}) => {
+        try{
+
+
+        return await instanceAuth.delete('users/delete-user');
+      
+       
+        
+       
 
 
         }catch(error: any){
