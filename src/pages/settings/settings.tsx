@@ -10,6 +10,8 @@ import { tokens } from '../../theme'
 import { useStyles } from './styles'
 import SettingsPersonalInfoComponent from '../../components/settings-personal-info/settingsPersonalInfo'
 import { getPublicUserInfo } from '../../store/thunks/auth/auth'
+import ChangePasswordComponent from '../../components/change-password/changePassword'
+import DeleteUserComponent from '../../components/delete-user/deleteUser'
 
 
 
@@ -56,10 +58,10 @@ const SettingsComponent = () =>{
            <SettingsPersonalInfoComponent/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-           2
+           <ChangePasswordComponent/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          3
+          <DeleteUserComponent/>
         </TabPanel>
     </Grid>
     )

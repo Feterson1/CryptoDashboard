@@ -37,7 +37,14 @@ export const registerUser =  createAsyncThunk(
 
 
         const user = await instance.post('auth/register', data);
+
         console.log(user)
+        if(
+            user.data.status === 400 || 
+            user.data.status === 401 ||
+            user.data.status === 500 
+            ) return
+
         sessionStorage.setItem('token',user.data.token);
 
         sessionStorage.setItem('name',user.data.firstName);
@@ -95,6 +102,58 @@ export const updatePublicUserInfo =  createAsyncThunk(
        
         
         return user.data;
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const updateUserPassword =  createAsyncThunk(
+    'users/change-password',
+    async (data :{oldPassword: string, newPassword: string},{rejectWithValue}) => {
+        try{
+
+
+        return await instanceAuth.patch('users/change-password',data);
+      
+       
+        
+       
+
+
+        }catch(error: any){
+            if(error.response && error.response.data.message){
+
+                return rejectWithValue(error.response.data.message);
+
+            }else{
+                return rejectWithValue(error.message);
+            }
+
+        }
+    }
+)
+
+export const deleteUser =  createAsyncThunk(
+    'users/delete-user',
+    async (_,{rejectWithValue}) => {
+        try{
+
+
+        return await instanceAuth.delete('users/delete-user');
+      
+       
+        
+       
 
 
         }catch(error: any){
