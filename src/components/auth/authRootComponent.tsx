@@ -5,12 +5,12 @@ import LoginPage from './login/login';
 import './style.scss';
 import { Box } from '@mui/system';
 import { useAppDispatch, useAppSelector } from '../../utils/hook';
-import { AppErrors } from '../common/errors';
 import { useForm } from 'react-hook-form';
 import { LoginSchema, RegisterSchema } from '../../utils/yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import { useStyles } from './styles';
 import { loginUser, registerUser } from '../../store/thunks/auth/auth';
+import { AppErrors } from '../../common/errors';
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
     

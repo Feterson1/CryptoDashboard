@@ -1,8 +1,10 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
 import { useStyles } from './styles';
+import { iSingleAsset, iTablePriceData } from '../../common/types/assets';
 
-const AssetsTableComponent = (props: any) =>  {
+
+const AssetsTableComponent:React.FC<iTablePriceData> = (props: iTablePriceData):JSX.Element =>  {
 
     const {assets} = props;
 
@@ -23,7 +25,7 @@ const AssetsTableComponent = (props: any) =>  {
             </TableRow>
           </TableHead>
           <TableBody>
-            {assets.map((element:any) => (
+            {assets.map((element: iSingleAsset) => (
               <TableRow
                 key={element.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

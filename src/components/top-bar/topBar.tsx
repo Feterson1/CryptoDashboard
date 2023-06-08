@@ -4,16 +4,18 @@ import { useAppSelector } from "../../utils/hook";
 import {MenuOutlined} from '@mui/icons-material';
 import { useStyles } from "./styles";
 import FlexBetween from "../flexBetween";
-import { iTopBarProps } from "../common/types/topbar";
 import ThemeSwitcherComponent from "../theme-switcher/themeSwitcher";
 import SearchBarComponent from "../search-bar/searchBar";
+import { iTopBarProps } from "../../common/types/topbar";
 ;
 
 const TopBarComponent: React.FC<iTopBarProps> = (props:iTopBarProps): JSX.Element => {
 
     const {isOpen,setIsOpen,isNoneMobile} = props;
 
-const user = useAppSelector( (state) => state.auth.user);
+const user = useAppSelector( (state) => state.auth.user.user);
+
+
 
 
 const classes = useStyles();
@@ -28,7 +30,7 @@ const classes = useStyles();
            <FlexBetween>
                 <MenuOutlined className={classes.menuIcon} onClick={() => {setIsOpen(!isOpen)}}/>
                 <Typography variant="h3">
-                    Welcome {sessionStorage.getItem('name')}
+                    Welcome {user? (`${user.firstName}`) : ('')}
                 </Typography>
             </FlexBetween>
            </Grid>

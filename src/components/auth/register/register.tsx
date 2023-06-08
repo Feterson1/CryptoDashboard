@@ -1,8 +1,8 @@
 import React from 'react';
-import {TextField,Button,Typography, Box} from '@mui/material';
-import { iPropsRegister } from '../../common/types/auth';
+import {TextField,Typography, Box} from '@mui/material';
 import AppLoadingButton from '../../loading-button/loadingButton';
 import { useStyles } from './styles';
+import { iPropsRegister } from '../../../common/types/auth';
 
 
 const RegisterPage: React.FC <iPropsRegister> = (props: iPropsRegister ): JSX.Element => {

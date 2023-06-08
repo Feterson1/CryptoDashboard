@@ -1,4 +1,4 @@
-import {HomeOutlined,ChevronLeftOutlined,ChevronRightOutlined,AutoGraphOutlined, MenuBookOutlined,SettingsOutlined ,LogoutOutlined, Book, BookOutlined } from '@mui/icons-material';
+import {HomeOutlined,AutoGraphOutlined,SettingsOutlined,  BookOutlined } from '@mui/icons-material';
 
 export const navMenu = [{
     name: 'Главная',

@@ -5,10 +5,10 @@ import { Box, Grid, Link, Typography } from '@mui/material';
 import { useStyles } from './styles';
 
 
-const NewsComponent = () =>{
+const NewsPage:React.FC = ():JSX.Element =>{
     const dispatch = useAppDispatch();
     const {news} = useAppSelector((state) => state.news);
-    console.log(news)
+
     const classes = useStyles();
 
     const renderNewsBlock = news.map((element: any) => (
@@ -46,4 +46,4 @@ const NewsComponent = () =>{
     )
 }
 
-export default NewsComponent;
+export default NewsPage;

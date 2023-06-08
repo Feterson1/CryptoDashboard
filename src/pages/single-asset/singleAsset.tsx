@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { iSingleAsset } from '../../components/common/types/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hook';
 import {Grid,Button,Avatar,Typography, Snackbar, Alert, AlertColor} from '@mui/material';
 import FlexBetween from '../../components/flexBetween';
 import { useStyles } from './styles';
 import { createWatchListRecord } from '../../store/thunks/assets';
+import { iSingleAsset } from '../../common/types/assets';
 
 const  SingleAssetPage: React.FC = ():JSX.Element => {
     const [open,setOpen] = useState(false);
+    const [error,setError] = useState(false);
     const [severity,setSeverity] = useState<AlertColor>('success');
     const navigate = useNavigate();
     const {id} = useParams();
@@ -34,6 +35,7 @@ const  SingleAssetPage: React.FC = ():JSX.Element => {
             }
     
             dispatch(createWatchListRecord(data));
+            setError(false);
             setSeverity('success');
             setOpen(true);
             setTimeout(()=>{
@@ -41,9 +43,13 @@ const  SingleAssetPage: React.FC = ():JSX.Element => {
                 ;},2000);
 
         }catch(error){
+            setError(true);
 
             setSeverity('error');
             setOpen(true);
+            setTimeout(()=>{
+                setOpen(false)
+                ;},2000);
 
         }
 
@@ -157,7 +163,7 @@ const  SingleAssetPage: React.FC = ():JSX.Element => {
             </Grid>
             <Snackbar open={open} autoHideDuration={6000}>
                         <Alert severity={severity} sx={{ width: '100%' }}>
-                            Success!
+                            {!error ? 'Success!' : 'Ooops'}
                         </Alert>
                     </Snackbar>
         </Grid>

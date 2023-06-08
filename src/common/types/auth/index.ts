@@ -29,7 +29,7 @@ TContext = any,
 }
 
 export interface iAuthState {
-    user: iPublicUser,
+    user: any,
     isLogged: boolean,
     isLoading: boolean,
 }

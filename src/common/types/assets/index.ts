@@ -46,3 +46,7 @@ export interface iChartData {
     price_chart_data: number[][]
     singleAsset: iSingleAsset[]
 }
+
+export interface iTablePriceData{
+    assets: iSingleAsset[],
+}

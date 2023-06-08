@@ -10,9 +10,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import {faker} from '@faker-js/faker';
-import { iLineChartProps } from '../../common/types/assets';
 import moment from 'moment';
+import { iLineChartProps } from '../../../common/types/assets';
 
 ChartJS.register(
   CategoryScale,
@@ -30,7 +29,7 @@ ChartJS.register(
 
 
 
-export function LineChart(props: iLineChartProps) {
+const LineChart:React.FC<iLineChartProps> = (props: iLineChartProps) => {
 
     const {data} = props;
 
@@ -69,3 +68,5 @@ export function LineChart(props: iLineChartProps) {
       
   return ( <Line options={options} data={values} width={'100%'} height={'20%'}  />);
 }
+
+export default LineChart;
