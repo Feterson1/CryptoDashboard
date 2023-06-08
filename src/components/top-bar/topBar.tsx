@@ -13,7 +13,7 @@ const TopBarComponent: React.FC<iTopBarProps> = (props:iTopBarProps): JSX.Elemen
 
     const {isOpen,setIsOpen,isNoneMobile} = props;
 
-const user = useAppSelector( (state) => state.auth.user.user);
+const {user} = useAppSelector( (state) => state.auth.user);
 
 
 
