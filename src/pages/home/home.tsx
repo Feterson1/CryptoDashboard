@@ -6,9 +6,9 @@ import { useStyles } from "./styles";
 import AreaChart from "../../components/charts/area-chart/areaChart";
 import TrendUp from '../../assets/images/chart/trend-up.svg';
 import TrendDown from '../../assets/images/chart/trend-down.svg';
-import { LineChart } from "../../components/charts/line-chart/lineChart";
-import { iChartData, iSingleAsset } from "../../components/common/types/assets";
+import  LineChart  from "../../components/charts/line-chart/lineChart";
 import TopPriceComponent from "../../components/top-price/topPrice";
+import { iChartData, iSingleAsset } from "../../common/types/assets";
 
 
 

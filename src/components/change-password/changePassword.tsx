@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../utils/hook';
 import { updateUserPassword } from '../../store/thunks/auth/auth';
 import AppLoadingButton from '../loading-button/loadingButton';
 
-const ChangePasswordComponent = () =>  {
+const ChangePasswordComponent:React.FC = ():JSX.Element =>  {
 
     const [oldPassword,setOldPassword] = useState('');
     const [newPassword,setNewPassword] = useState('');

@@ -4,11 +4,11 @@ import {Box, Grid, TextField} from '@mui/material';
 import AppLoadingButton from '../loading-button/loadingButton';
 import { useStyles } from './styles';
 
-import { updatePublicUserInfo } from '../../store/thunks/auth/auth';
+import { getPublicUserInfo, updatePublicUserInfo } from '../../store/thunks/auth/auth';
 
 
 
-const  SettingsPersonalInfoComponent = () => {
+const  SettingsPersonalInfoComponent:React.FC = ():JSX.Element => {
 
     const dispatch = useAppDispatch();
     const classes = useStyles();
@@ -19,7 +19,7 @@ const  SettingsPersonalInfoComponent = () => {
 
     const {user} =useAppSelector((state) => state.auth.user);
 
-    console.log(user);
+    
     
 
 
@@ -46,10 +46,11 @@ const  SettingsPersonalInfoComponent = () => {
         }
 
         dispatch(updatePublicUserInfo(data));
+        dispatch(getPublicUserInfo());
     }
 
 
-  return (
+  return ( 
         <Grid
     component={'form'}
     noValidate

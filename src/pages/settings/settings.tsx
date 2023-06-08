@@ -15,7 +15,7 @@ import DeleteUserComponent from '../../components/delete-user/deleteUser'
 
 
 
-const SettingsComponent = () =>{
+const SettingsPage:React.FC = ():JSX.Element => {
 
     const [value,setValue] = useState(0);
     
@@ -67,4 +67,4 @@ const SettingsComponent = () =>{
     )
 }
 
-export default SettingsComponent;
+export default SettingsPage;

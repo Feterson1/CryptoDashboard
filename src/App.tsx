@@ -6,10 +6,11 @@ import AuthRootComponent from './components/auth/authRootComponent';
 import { ColorModeContext,useMode } from './theme';
 import { CssBaseline,ThemeProvider } from '@mui/material';
 import LayoutComponent from './components/layout/LayoutComponent';
-import WatchListComponent from './pages/watchlist/watchlist';
-import NewsComponent from './pages/news/news';
-import SettingsComponent from './pages/settings/settings';
+import WatchListPage from './pages/watchlist/watchlist';
+import SettingsPage from './pages/settings/settings';
 import SingleAssetPage from './pages/single-asset/singleAsset';
+import NewsPage from './pages/news/news';
+
 
 
 
@@ -31,9 +32,9 @@ function App() {
         <Route element={<LayoutComponent/>}>
         <Route element = {<PrivateRoute/>}>
         <Route path='/' element = {<Home/>}/>
-        <Route path='/watchlist' element = {<WatchListComponent/>}/>
-        <Route path='/news' element = {<NewsComponent/>}/>
-        <Route path='/settings' element = {<SettingsComponent/>}/>
+        <Route path='/watchlist' element = {<WatchListPage/>}/>
+        <Route path='/news' element = {<NewsPage/>}/>
+        <Route path='/settings' element = {<SettingsPage/>}/>
         <Route path='/single/:id' element = {<SingleAssetPage/>}/>
         </Route>
         <Route path='login' element = {<AuthRootComponent/>}/>

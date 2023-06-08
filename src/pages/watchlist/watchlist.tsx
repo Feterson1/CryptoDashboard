@@ -8,14 +8,14 @@ import { useStyles } from './styles';
 
 
 
-const WatchListComponent = () =>{
+const WatchListPage:React.FC = ():JSX.Element =>{
     const WatchList = useAppSelector((state) => state.watchList.assets);
     const dispatch = useAppDispatch();
     const {assets} = useAppSelector(state => state.assets);
 
     const classes = useStyles();
 
-    console.log(assets)
+    
 
     useEffect(()=>{
         dispatch(getTopPriceData());
@@ -48,4 +48,4 @@ const WatchListComponent = () =>{
     )
 }
 
-export default WatchListComponent;
+export default WatchListPage;

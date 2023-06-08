@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { iLoginData, iRegisterData } from "../../../components/common/types/auth";
+import { iLoginData, iRegisterData} from "../../../common/types/auth";
 import { instance, instanceAuth } from "../../../utils/axios";
 
 export const loginUser =  createAsyncThunk(
@@ -9,7 +9,7 @@ export const loginUser =  createAsyncThunk(
 
 
         const user = await instance.post('auth/login', data);
-        console.log(user)
+       
         sessionStorage.setItem('token',user.data.token);
 
         sessionStorage.setItem('name',user.data.user.firstName);
@@ -38,7 +38,7 @@ export const registerUser =  createAsyncThunk(
 
         const user = await instance.post('auth/register', data);
 
-        console.log(user)
+        
         if(
             user.data.status === 400 || 
             user.data.status === 401 ||
@@ -72,7 +72,7 @@ export const getPublicUserInfo =  createAsyncThunk(
 
 
         const user = await instanceAuth.get('auth/get-public-user-info');
-        console.log(user.data)
+        
        
         
         return user.data;

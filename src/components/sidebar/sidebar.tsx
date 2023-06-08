@@ -11,16 +11,15 @@ import {
     ListItemText,
     Typography,
     useTheme} from '@mui/material';
-import {ChevronLeftOutlined,ChevronRightOutlined,LogoutOutlined } from '@mui/icons-material';
+import {ChevronLeftOutlined,LogoutOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FlexBetween from "../flexBetween";
-import { navMenu } from "../common/moks/navigate/navigate";
-import { tokens } from "../../theme";
 import logo from './../../assets/images/sidebar/logo.svg'
-import { iSidebarProps } from "../common/types/sidebar";
 import ThemeSwitcherComponent from "../theme-switcher/themeSwitcher";
 import SearchBarComponent from "../search-bar/searchBar";
+import { iSidebarProps } from "../../common/types/sidebar";
+import { navMenu } from "../../common/moks/navigate/navigate";
 
 
 
@@ -42,7 +41,7 @@ const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Ele
     const {pathname} = useLocation();
     const navigate = useNavigate();
     const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+   
 
     useEffect(()=>{
         setActive(pathname)

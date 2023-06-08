@@ -12,9 +12,8 @@ import {
   ScriptableContext,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import {faker} from '@faker-js/faker';
 import moment from 'moment';
-import { iAreaChartProps } from '../../common/types/assets';
+import { iAreaChartProps } from '../../../common/types/assets';
 
 ChartJS.register(
   CategoryScale,
@@ -54,7 +53,7 @@ const options = {
 
 
 
-const AreaChart = (props: iAreaChartProps) => {
+const AreaChart:React.FC<iAreaChartProps> = (props: iAreaChartProps)  => {
 
   const {data} = props;
 

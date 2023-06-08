@@ -10,7 +10,7 @@ import { deleteUser } from '../../store/thunks/auth/auth';
 
 
 
-const DeleteUserComponent = () => {
+const DeleteUserComponent:React.FC = ():JSX.Element => {
 
     const [checked,setChecked] = useState(false);
     const theme = useTheme();

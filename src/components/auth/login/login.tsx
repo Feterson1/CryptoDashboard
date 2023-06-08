@@ -1,8 +1,8 @@
 import React from 'react';
 import {TextField,Typography} from '@mui/material';
-import { iPropsLogin } from '../../common/types/auth';
 import AppLoadingButton from '../../loading-button/loadingButton';
 import { useStyles } from './styles';
+import { iPropsLogin } from '../../../common/types/auth';
 
 
 

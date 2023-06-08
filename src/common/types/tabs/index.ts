@@ -1,6 +1,6 @@
 import React from 'react'
 
-export interface TabPanelProps {
+export interface iTabPanelProps {
     children?: React.ReactNode
     index: number
     value: number
