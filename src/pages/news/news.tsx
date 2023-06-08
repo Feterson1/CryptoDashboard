@@ -20,7 +20,7 @@ const NewsPage:React.FC = ():JSX.Element =>{
 
     },[news,count]);
 
-     let i = 0;
+   
 
     useEffect(()=>{
         document.addEventListener('scroll',handleScroll);
@@ -43,7 +43,7 @@ const NewsPage:React.FC = ():JSX.Element =>{
 
     const renderNewsBlock = newsItem.map((element: any) => (
         <Grid container className={classes.newsBlock}>
-            {i++}
+          
             <Grid item xs={12} md={3}>
                 <img src={element.imageurl} alt={element.category} />
             </Grid>
