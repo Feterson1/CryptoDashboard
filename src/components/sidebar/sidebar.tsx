@@ -47,6 +47,14 @@ const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Ele
         setActive(pathname)
     },[pathname])
 
+    const handleLogout = () => {
+
+        sessionStorage.removeItem('name');
+        sessionStorage.removeItem('token');
+        navigate('/login');
+
+    }
+
     const renderNavMenu =  navMenu.map((element): JSX.Element=>{
         return(
             <ListItem key={element.id} className={classes.navItem}>
@@ -109,7 +117,10 @@ const SideBarComponent: React.FC<iSidebarProps> = (props:iSidebarProps): JSX.Ele
                                 </ListItem>
                             )}
                             <ListItem>
-                                <ListItemButton className={classes.navItem}>
+                                <ListItemButton 
+                                className={classes.navItem}
+                                onClick={handleLogout}
+                                >
                                     <ListItemIcon>
                                     <LogoutOutlined/>
                                     </ListItemIcon>

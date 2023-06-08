@@ -29,12 +29,15 @@ TContext = any,
 }
 
 export interface iAuthState {
-    user: any,
+    user: {
+        user: iPublicUser,
+        token: string,
+    },
     isLogged: boolean,
     isLoading: boolean,
 }
 
-interface iPublicUser{
+export interface iPublicUser{
     id: number | null,
 
     firstName: string,
